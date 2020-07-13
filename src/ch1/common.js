@@ -5,27 +5,33 @@ let rtn = statement(invoice[0]);
 console.log(rtn);
 
 function statement(invoice) {
-  let totalAmout = 0;
   
   let result = `청구 내역 (고객명: ${invoice.customer})\n`;
   for (let perf of invoice.performances) { 
     // 청구 내역을 출력한다
     result += ` ${playFor(perf).name}: ${usd(amountFor(perf, playFor(perf)))} (${perf.audience}석)\n`;
-    totalAmout += amountFor(perf, playFor(perf));
   }
   
-  result += `총액: ${usd(totalAmout)}\n`;
+  result += `총액: ${usd(totalAmount(invoice))}\n`;
   result += `적립 포인트 : ${totalVolumeCredits(invoice)}점 \n`;
   return result;
 }
 
+function totalAmount(invoice) {
+  let result = 0;
+  for (let perf of invoice.performances) { 
+    result += amountFor(perf, playFor(perf));
+  }
+  return result;
+}
+
 function totalVolumeCredits(invoice) {
-  let volumeCredits = 0;
+  let result = 0;
   for(let perf of invoice.performances) {
-    volumeCredits += volumeCreditsFor(perf);
+    result += volumeCreditsFor(perf);
   }
 
-  return volumeCredits;
+  return result;
 }
 
 function usd(aNumber) {
