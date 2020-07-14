@@ -1,4 +1,4 @@
-import PerformanceCalculator from "./PerformanceCalculator";
+import { createPerformanceCalculator } from "./PerformanceCalculator";
 
 export default function createStatementData(invoice, plays) {
   const statementData = {};
@@ -10,11 +10,11 @@ export default function createStatementData(invoice, plays) {
   return statementData;
 
   function enrichPerformance(aPerformance) {
-    const calculator = new PerformanceCalculator(aPerformance, playFor(aPerformance)); // 공연정보를 인자로
+    const calculator = createPerformanceCalculator(aPerformance, playFor(aPerformance)); // 공연정보를 인자로
     const result = Object.assign({},aPerformance);
     result.play = playFor(result);
     result.amount = calculator.amount;
-    result.volumeCredits = volumeCreditsFor(result);
+    result.volumeCredits = calculator.volumeCredits;
     return result;
   }
     
