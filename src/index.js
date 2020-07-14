@@ -1,5 +1,5 @@
 import './index.css';
-import './ch1/common.js';
+import './ch1/statement.js';
 
 const rootEl = document.querySelector('.root');
 
