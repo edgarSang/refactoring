@@ -15,12 +15,15 @@ export default class Province{
 
   get name() {return this._name};
   get producers() {return this._producers.slice()};
+
   get totalProduction() {return this._totalProduction};
   set totalProduction(arg) { this._totalProduction = arg};
+
   get demand() {return this._demand};
   set demand(arg) { this._demand = parseInt(arg)};
+
   get price() {return this._price};
-  set price() {this._price = parseInt(arg)};
+  set price(arg) {this._price = parseInt(arg)};
 
   get shortfall() {
     return this._demand - this.totalProduction;
@@ -75,10 +78,10 @@ class Producer {
   }
 }
 
-function sampleProvinceData() {
+export function sampleProvinceData() {
   return {
     name: "Asia",
-    producres: [
+    producers: [
       {name:'Byzantium', cost:10, production: 9},
       {name:'Attalia', cost:12, production: 10},
       {name:'Sinope', cost:10, production: 6},
