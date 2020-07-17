@@ -1,17 +1,20 @@
 function printOwing(invoice) {
 
   printBanner();
-  
   // 미해결 채무(outstanding)를 계산한다.
-  let outstanding = 0; // <- 선언문을 사용되는 위치위로변경 (sliding)
-  for (const o of invoice.orders) {
-    outstanding += o.amount;
-  }
-
+  let outstanding = calcOutstanding(invoice); //함수추출완료 함수 return 값을 원래변수에 저장
   recordDueDate(invoice);
-
   // 세부 사항을 출력한다.
   printDetail(invoice, outstanding);                   
+
+}
+
+function calcOutstanding(invocie) {
+  let outstanding = 0;
+  for (const o of invocie.orders) {
+    outstanding += o.amount;
+  }
+  return outstanding;
 }
 
 function recordDueDate(invoice){
