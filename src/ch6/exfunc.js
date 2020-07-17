@@ -1,10 +1,9 @@
 function printOwing(invoice) {
-  let outstanding = 0;
-
 
   printBanner();
-
+  
   // 미해결 채무(outstanding)를 계산한다.
+  let outstanding = 0; // <- 선언문을 사용되는 위치위로변경 (sliding)
   for (const o of invoice.orders) {
     outstanding += o.amount;
   }
